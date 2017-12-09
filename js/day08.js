@@ -17,7 +17,6 @@ advent.day08 = advent.Day.extend({
 			var val = parseInt(m[3]);
 			var b = m[4];
 			var cmp = m[5];
-			var cmpVal = m[6];
 			var cnd = eval((regs[b] || 0) + cmp);
 			if (cnd) {
 				regs[a] = regs[a] || 0;
