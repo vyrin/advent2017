@@ -6,6 +6,10 @@ advent.day13 = advent.Day.extend({
 		var solution = 0;
 		var parts = input.split("\n");
 
+		// parts = parts.map(x => parseInt(x));
+
+		
+
 		this.answer(1, solution);
 	},
 });
