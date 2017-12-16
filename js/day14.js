@@ -10,32 +10,8 @@ advent.day14 = advent.Day.extend({
 		var grid = Array.fillMulti([128, 128], 0);
 		var counted = Array.fillMulti([128, 128], 0);
 
-		var hex = {
-			0: "0000",
-			1: "0001",
-			2: "0010",
-			3: "0011",
-			4: "0100",
-			5: "0101",
-			6: "0110",
-			7: "0111",
-			8: "1000",
-			9: "1001",
-			"a": "1010",
-			"b": "1011",
-			"c": "1100",
-			"d": "1101",
-			"e": "1110",
-			"f": "1111",
-		}
-
 		for (var i = 0; i < 128; i++) {
-			var h = this.hash(input + "-" + i);
-			var f = "";
-			for (var q = 0; q < h.length; q++) {
-				f += hex[h[q]];
-			}
-			h = f;
+			var h = this.hash(input + "-" + i, true);
 			for (var j = 0; j < h.length; j++) {
 				grid[i][j] = parseInt(h[j]);
 				if (grid[i][j]) {
@@ -72,7 +48,7 @@ advent.day14 = advent.Day.extend({
 		}
 	},
 
-	hash : function (input) {
+	hash : function (input, binary) {
 		// Part 2
 		var len = input.length;
 
@@ -126,8 +102,37 @@ advent.day14 = advent.Day.extend({
 			solution.push(h);
 		})
 
+		solution = solution.join("");
 
-		return solution.join("");
+		if (binary) {
+			var hex = {
+				0: "0000",
+				1: "0001",
+				2: "0010",
+				3: "0011",
+				4: "0100",
+				5: "0101",
+				6: "0110",
+				7: "0111",
+				8: "1000",
+				9: "1001",
+				"a": "1010",
+				"b": "1011",
+				"c": "1100",
+				"d": "1101",
+				"e": "1110",
+				"f": "1111",
+			}
+
+			var f = "";
+			for (var q = 0; q < solution.length; q++) {
+				f += hex[solution[q]];
+			}
+
+			solution = f;
+		}
+
+		return solution;
 
 	}
 });
