@@ -49,10 +49,10 @@ advent.day18 = advent.Day.extend({
 			}
 		];
 
-		var rx = {
-			0 : [],
-			1 : [],
-		}
+		var rx = {};
+		nodes.forEach(node => {
+			rx[node.pid] = [];
+		})
 
 		var running = true;
 		var count = 0;
