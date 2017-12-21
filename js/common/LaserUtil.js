@@ -205,7 +205,13 @@ Array.fillMulti = function(dims, value) {
 		var node = result;
 		index.forEach((sub, i) => {
 			if (i == len - 1) {
-				node[sub] = value;
+				if (_.isFunction(value)) {
+					node[sub] = value(...index);
+				} else if (_.isObject(value) || _.isArray(value)) {
+					node[sub] = _.cloneDeep(value);
+				} else {
+					node[sub] = value;
+				}
 			} else {
 				if (!node[sub]) {
 					node[sub] = [];
@@ -247,6 +253,14 @@ Array.prototype.toString2D = function(sep) {
 		}
 	}
 	return result;
+}
+
+Array.prototype.iter2D = function(callback) {
+	for (var x = 0; x < this.length; x++) {
+		for (var y = 0; y < this[0].length; y++) {
+			callback(this[x][y], x, y);
+		}
+	}
 }
 
 // Debugging
