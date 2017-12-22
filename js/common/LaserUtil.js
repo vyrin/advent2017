@@ -200,7 +200,7 @@ Array.fillMulti = function(dims, value) {
 	_.times(len, i => {
 		index.push(0);
 	});
-	for (var q = 0; q < 10000000; q++) {
+	for (var q = 0; q < 1000000000; q++) {
 	// while (true) {
 		var node = result;
 		index.forEach((sub, i) => {
